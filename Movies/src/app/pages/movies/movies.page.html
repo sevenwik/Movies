@@ -6,11 +6,11 @@
  
 <ion-content>
  
-  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchTerm" color="danger"></ion-searchbar>
  
   <ion-item>
-    <ion-label>Select Searchtype</ion-label>
-    <ion-select [(ngModel)]="type" (ionChange)="searchChanged($event)">
+    <ion-button color="primary" (click)="searchChanged($event)">Search</ion-button>
+    <ion-select [(ngModel)]="type">
       <ion-select-option value="">All</ion-select-option>
       <ion-select-option value="movie">Movie</ion-select-option>
       <ion-select-option value="series">Series</ion-select-option>
