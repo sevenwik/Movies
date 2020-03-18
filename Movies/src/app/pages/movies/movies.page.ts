@@ -1,6 +1,7 @@
-import { MovieService, SearchType } from './../../services/movie.service';
+import { MovieService } from './../../services/movie.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
  
 @Component({
   selector: 'app-movies',
@@ -11,18 +12,28 @@ export class MoviesPage implements OnInit {
  
   results: Observable<any>;
   searchTerm: string = '';
-  type: SearchType = SearchType.all;
+  movies: any = [];
+  venues: any;
  
   /**
    * Constructor of our first page
    * @param movieService The movie Service to get data
    */
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService) { 
+    
+  }
  
-  ngOnInit() { }
+  ngOnInit() {
+    this.loadMovies();
+   }
  
-  searchChanged() {
-    // Call our service function which returns an Observable
-    this.results = this.movieService.searchData(this.searchTerm, this.type);
+  loadMovies(){
+    this.movieService.load().subscribe(results => {
+      if(results)
+      {
+        this.venues = results.Movies.cinemas.BookMyShow.aiVN;
+        this.movies = results.Movies.moviesData.BookMyShow.arrEvents.Child;
+      }
+    });
   }
 }

@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { HttpClient } from '@angular/common/http';
+import { MovieService } from './services/movie.service';
 
 @Component({
   selector: 'app-root',
